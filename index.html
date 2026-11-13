@@ -804,6 +804,12 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
  .eg-skip { transition: none; }
 }
 </style>
+<!-- GSAP brand motion: pinned external runtime, local authored styles and controllers. -->
+<link rel="preload" as="image" type="image/webp" href="/assets/floating/18_quantum_glass_orb.webp" fetchpriority="high">
+<link rel="stylesheet" href="/assets/motion/eg-motion.css">
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script defer src="/assets/motion/eg-motion.js"></script>
 </head>
 <body>
 <a class="eg-skip" href="#main-content">Към основното съдържание</a>
