@@ -80,6 +80,12 @@
     const gsap = window.gsap;
     const ScrollTrigger = window.ScrollTrigger;
     if (ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
+    // 8B also installs a custom eased wheel-scroll handler on fine pointers.
+    // Turn off ONLY that handler; native CSS timeline scenes stay fully active.
+    // Otherwise 8B wheel easing + ScrollTrigger scrub compound the lag.
+    if (ScrollTrigger && window.motionKit && window.motionKit.wheel) {
+      window.motionKit.wheel.stop();
+    }
     document.documentElement.classList.add('eg-gsap-live', 'eg-kinetic-v2');
     const narrow = matchMedia('(max-width: 700px)');
     const intensity = narrow.matches ? .62 : 1;
