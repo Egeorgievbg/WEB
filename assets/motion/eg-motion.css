@@ -1,0 +1,76 @@
+/* Evgeni Georgiev: independent floating decorative assets, isolated from 8B motion. */
+.eg-motion-layer{position:absolute;inset:0;pointer-events:none;z-index:2;isolation:isolate;overflow:visible;}
+.eg-float{position:absolute;left:var(--eg-left);top:var(--eg-top);width:var(--eg-width);height:auto;aspect-ratio:1/1;display:block;transform:translate(-50%,-50%);pointer-events:none;user-select:none;-webkit-user-select:none;}
+.eg-float[hidden]{display:none!important;}
+.eg-float__reveal,.eg-float__drift{display:block;width:100%;height:100%;transform-origin:center center;}
+.eg-float__image{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 18px 30px rgba(9,34,49,.13));backface-visibility:hidden;-webkit-user-drag:none;user-select:none;}
+.eg-float--hero-orb .eg-float__image{filter:drop-shadow(0 26px 46px rgba(0,63,80,.19));}
+.eg-float--hero-mobius{z-index:4;}
+.eg-float--hero-ribbon{z-index:5;}
+.eg-float--hero-orb{z-index:3;}
+.eg-float--hero-cursor{z-index:6;}
+.eg-float--hero-prism{z-index:2;}
+#opening .opening__stage>.eg-motion-layer{z-index:3;overflow:hidden;}
+#opening .opening__first{position:relative;z-index:5;pointer-events:none;}
+#opening .opening__first a,#opening .opening__first button{pointer-events:auto;}
+#opening .opening__second{position:relative;z-index:4;}
+html.eg-motion-ready #opening .opening__figure{display:none!important;}
+#about>.eg-motion-layer{overflow:hidden;z-index:0;}
+#about>.eg-about__grid{position:relative;z-index:3;}
+#about .eg-float__image{filter:drop-shadow(0 16px 38px rgba(0,0,0,.24));}
+#depths .depths__item,
+#day .day__dial,
+#rooms .rooms__row,
+#members .members__item,
+#plans .plans__item,
+#visit .visit__map{position:relative;isolation:isolate;}
+#depths .depths__item>.eg-motion-layer,
+#rooms .rooms__row>.eg-motion-layer,
+#members .members__item>.eg-motion-layer,
+#plans .plans__item>.eg-motion-layer{z-index:4;}
+#depths .depths__item .eg-float__image,
+#members .members__item .eg-float__image{filter:drop-shadow(0 15px 23px rgba(3,34,49,.16));}
+#day .day__dial>.eg-motion-layer{z-index:2;}
+#visit .visit__map>.eg-motion-layer{z-index:3;overflow:hidden;}
+#visit .eg-float__image{filter:drop-shadow(0 8px 20px rgba(5,50,57,.16));}
+.eg-float--about-orbit{opacity:.68;}
+.eg-float--about-code{opacity:.76;}
+.eg-float--offer-mobile,.eg-float--offer-system{opacity:.85;}
+@media (min-width: 1100px){
+  #opening .opening__title{max-width:9.5em;}
+  #opening .opening__copy{max-width:min(38rem,44vw);}
+  #opening .opening__first{padding-left:1.5vw;}
+}
+@media (max-width: 900px){
+  .eg-float--hero-orb{--eg-left:70%!important;--eg-top:39%!important;--eg-width:clamp(205px,49vw,390px)!important;}
+  .eg-float--hero-mobius{--eg-left:87%!important;--eg-top:16%!important;--eg-width:clamp(100px,20vw,170px)!important;}
+  .eg-float--hero-ribbon{--eg-left:83%!important;--eg-top:67%!important;--eg-width:clamp(110px,26vw,220px)!important;}
+  .eg-float--hero-prism{--eg-left:45%!important;--eg-top:18%!important;--eg-width:clamp(70px,12vw,125px)!important;}
+  .eg-float--hero-cursor{--eg-left:47%!important;--eg-top:59%!important;--eg-width:clamp(65px,10vw,95px)!important;}
+}
+@media (max-width: 700px){
+  #opening .opening__stage>.eg-motion-layer{height:54vh;overflow:clip;}
+  #opening .opening__first{z-index:5;padding-block:55vh 4.5rem!important;align-content:start;}
+  #opening .opening__copy{max-width:100%;}
+  .eg-float--hero-orb{--eg-left:60%!important;--eg-top:51%!important;--eg-width:clamp(210px,65vw,335px)!important;}
+  .eg-float--hero-ribbon{--eg-left:90%!important;--eg-top:79%!important;--eg-width:clamp(90px,30vw,150px)!important;}
+  .eg-float--hero-cursor{--eg-left:24%!important;--eg-top:80%!important;--eg-width:clamp(55px,14vw,92px)!important;}
+  .eg-float--hero-mobius,.eg-float--hero-prism{display:none!important;}
+  #about>.eg-motion-layer{opacity:.47;}
+  #about .eg-float--about-orbit{--eg-left:88%!important;--eg-top:10%!important;--eg-width:110px!important;}
+  #about .eg-float--about-code{--eg-left:11%!important;--eg-top:93%!important;--eg-width:83px!important;}
+  #depths .eg-float,#rooms .eg-float,#members .eg-float,#plans .eg-float{--eg-width:clamp(63px,20vw,98px)!important;}
+  #depths .eg-motion-layer,#members .eg-motion-layer{opacity:.9;}
+  #rooms .rooms__row>.eg-motion-layer{opacity:.68;}
+  #day .day__dial .eg-float{--eg-width:95px!important;}
+  #visit .visit__map .eg-float{--eg-width:100px!important;}
+}
+@media (max-width:420px){
+  #opening .opening__stage>.eg-motion-layer{height:49vh;}
+  #opening .opening__first{padding-block:50vh 3rem!important;}
+  .eg-float--hero-orb{--eg-left:58%!important;--eg-top:45%!important;--eg-width:70vw!important;}
+  .eg-float--hero-ribbon{--eg-left:91%!important;--eg-top:78%!important;--eg-width:30vw!important;}
+}
+@media(prefers-reduced-motion:reduce){
+  .eg-float,.eg-float__reveal,.eg-float__drift,.eg-float__image{animation:none!important;transition:none!important;}
+}
