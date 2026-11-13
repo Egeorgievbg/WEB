@@ -2,7 +2,7 @@
 .eg-motion-layer{position:absolute;inset:0;pointer-events:none;z-index:2;isolation:isolate;overflow:visible;}
 .eg-float{position:absolute;left:var(--eg-left);top:var(--eg-top);width:var(--eg-width);height:auto;aspect-ratio:1/1;display:block;transform:translate(-50%,-50%);pointer-events:none;user-select:none;-webkit-user-select:none;}
 .eg-float[hidden]{display:none!important;}
-.eg-float__reveal,.eg-float__drift{display:block;width:100%;height:100%;transform-origin:center center;}
+.eg-float__scroll,.eg-float__reveal,.eg-float__drift,.eg-float__parallax{display:block;width:100%;height:100%;transform-origin:center center;backface-visibility:hidden;}
 .eg-float__image{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 18px 30px rgba(9,34,49,.13));backface-visibility:hidden;-webkit-user-drag:none;user-select:none;}
 .eg-float--hero-orb .eg-float__image{filter:drop-shadow(0 26px 46px rgba(0,63,80,.19));}
 .eg-float--hero-mobius{z-index:4;}
@@ -72,4 +72,79 @@ html.eg-motion-ready #opening .opening__figure{display:none!important;}
 }
 @media(prefers-reduced-motion:reduce){
   .eg-float,.eg-float__reveal,.eg-float__drift,.eg-float__image{animation:none!important;transition:none!important;}
+}
+
+/* KINETIC V2 — strong movement is split between independent transform wrappers.
+   8B's CSS scroll-driven animations continue on their original nodes only. */
+.eg-float__scroll,.eg-float__reveal,.eg-float__drift,.eg-float__parallax{
+  transform-style:preserve-3d;min-width:0;min-height:0;
+}
+.eg-float.eg-is-moving .eg-float__scroll,
+.eg-float.eg-is-moving .eg-float__reveal,
+.eg-float.eg-is-moving .eg-float__drift,
+.eg-float.eg-is-moving .eg-float__parallax{will-change:transform;}
+.eg-float__image{object-position:center;max-width:100%;max-height:100%;}
+/* Render the visual ecosystem behind copy and CTAs, never above interactive content. */
+#opening .opening__stage>.eg-motion-layer{pointer-events:none;contain:paint;overflow:clip;}
+#opening .eg-motion-layer::before{
+  content:"";position:absolute;inset:5% 2% 8% 23%;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 65% 42%,rgba(72,224,214,.18),transparent 42%),
+    radial-gradient(ellipse at 80% 73%,rgba(22,116,141,.12),transparent 48%);
+  opacity:.75;transform:translate3d(0,0,0);
+}
+#opening .eg-motion-layer .eg-float{z-index:1;}
+#opening .eg-motion-layer .eg-float--hero-orb{z-index:2;}
+#opening .eg-motion-layer .eg-float--hero-cursor{z-index:3;}
+/* Adaptive separation: preserve a readable foreground on narrow viewports. */
+@media(max-width:700px){
+  #opening .eg-motion-layer::before{inset:0 0 0 9%;opacity:.56;}
+  #opening .opening__stage>.eg-motion-layer{contain:paint;}
+  .eg-float--hero-orb .eg-float__image{filter:drop-shadow(0 15px 29px rgba(0,63,80,.15));}
+  #rooms .rooms__row>.eg-motion-layer{opacity:.78;}
+}
+@media(prefers-reduced-motion:no-preference){
+  html.eg-gsap-live #opening .eg-motion-layer::before{
+    animation:eg-ambient-breath 5.4s ease-in-out infinite alternate;
+  }
+  html.eg-motion-ready:not(.eg-gsap-live) .eg-float__drift{
+    animation:eg-fallback-float 4.5s ease-in-out infinite alternate;
+    animation-delay:calc(var(--eg-index) * -0.3s);
+  }
+  html.eg-motion-ready:not(.eg-gsap-live) #opening .eg-motion-layer::before{
+    animation:eg-ambient-breath 5.4s ease-in-out infinite alternate;
+  }
+}
+@keyframes eg-ambient-breath{
+  from{opacity:.42;transform:translate3d(-3%,5%,0) scale(.93);}
+  to{opacity:.9;transform:translate3d(4%,-4%,0) scale(1.08);}
+}
+@keyframes eg-fallback-float{
+  from{transform:translate3d(-13px,-20px,0) rotate(-5deg);}
+  to{transform:translate3d(18px,29px,0) rotate(7deg);}
+}
+@media(prefers-reduced-motion:reduce){
+  #opening .eg-motion-layer::before,
+  .eg-float__scroll,.eg-float__reveal,.eg-float__drift,.eg-float__parallax{
+    animation:none!important;transition:none!important;will-change:auto!important;
+  }
+}
+
+/* 8B compatibility bridge: on older Firefox, native view-timeline is absent.
+   GSAP animates the section composition and toggles the active process row. */
+html.eg-legacy-bridge #day[data-dialing] .day__row{
+  transition:opacity .35s ease;
+}
+html.eg-legacy-bridge #day[data-dialing] .day__row:not([data-now]){
+  opacity:.48;
+}
+html.eg-legacy-bridge #day[data-dialing] .day__row[data-now]{
+  opacity:1;
+}
+html.eg-legacy-bridge #rooms .rooms__body,
+html.eg-legacy-bridge #plans .plans__body{
+  backface-visibility:hidden;
+}
+@media(prefers-reduced-motion:reduce){
+  html.eg-legacy-bridge #day .day__row{transition:none!important;}
 }
