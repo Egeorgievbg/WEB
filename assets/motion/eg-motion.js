@@ -184,14 +184,23 @@
         duration:6+index, yoyo:true, repeat:-1,
         ease:'sine.inOut', paused:true, force3D:true
       });
+      const record = { image:well, tween, active:false };
       if (ScrollTrigger) {
         ScrollTrigger.create({
           trigger:well.closest('.plans__item'),
           start:'top bottom', end:'bottom top',
-          onToggle:self => self.isActive && !document.hidden ? tween.resume() : tween.pause()
+          onToggle:self => {
+            record.active = self.isActive;
+            self.isActive && !document.hidden ? tween.resume() : tween.pause();
+          }
         });
-      } else tween.resume();
-      legacy.push({ image:well, tween, active:true });
+      } else if ('IntersectionObserver' in window) {
+        new IntersectionObserver(entries => {
+          record.active = entries[0].isIntersecting;
+          record.active && !document.hidden ? tween.resume() : tween.pause();
+        }, {rootMargin:'120px'}).observe(well);
+      } else { record.active = true; tween.resume(); }
+      legacy.push(record);
     });
 
     // The pointer controls only the parallax wrapper; continuous movement and
