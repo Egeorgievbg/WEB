@@ -47,7 +47,7 @@ html { overflow-x: clip; }
   width: 100%;
   height: auto;
   object-fit: contain;
-  aspect-ratio: auto;
+  aspect-ratio: auto 1 / 1;
   filter: drop-shadow(0 20px 28px var(--egm-shadow));
   -webkit-user-drag: none;
   user-select: none;
