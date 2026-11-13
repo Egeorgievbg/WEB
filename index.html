@@ -784,9 +784,30 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
 .eg-about__actions .m-link{font-size:.91rem;}
 .eg-mailnote{font-size:.78rem;color:var(--color-3);margin-top:1rem;max-width:43rem;}
 @media(max-width:700px){.eg-about__grid{grid-template-columns:1fr;gap:2rem}.eg-about__content h2{font-size:clamp(1.9rem,8vw,3rem);overflow-wrap:break-word}.eg-about__actions{align-items:flex-start;flex-direction:column}}
-</style></head>
+</style><style>
+/* EG QA PATCH: SVG artwork is a rectangular illustration, not a cut-out portrait. */
+.m-cutout, #opening .opening__figure { mix-blend-mode: normal !important; }
+.m-cutout img { filter: none !important; object-fit: contain !important; }
+#opening .opening__figure { left: 45vw; height: 54vh; aspect-ratio: 9 / 7; }
+#opening .opening__figure-move { filter: drop-shadow(0 28px 36px rgba(9, 38, 49, .16)); }
+.members__portrait .m-cutout { overflow: hidden; border-radius: 12px; }
+.eg-skip { position: absolute; top: -12rem; left: 1rem; z-index: 9999; background: #14232a; color: white; padding: .8rem 1.2rem; text-decoration:none; border-radius: .6rem; }
+.eg-skip:focus { top: 1rem; }
+@media(max-width: 700px) {
+ #opening .opening__figure { left: 1vw; width: 98vw; top: 18vh; bottom: auto; height: 30vh; aspect-ratio: 9 / 7; }
+ #opening .opening__figure img { object-position: center !important; }
+ #opening .opening__copy { max-width: 100%; }
+ #opening .opening__first { padding-block: 53vh 3rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+ html { scroll-behavior:auto !important; }
+ .eg-skip { transition: none; }
+}
+</style>
+</head>
 <body>
-<!-- navigation: top bar: wordmark, section links, Book a day button; phone menu overlay -->
+<a class="eg-skip" href="#main-content">Към основното съдържание</a>
+<!-- navigation: adapted Bulgarian portfolio -->
 <header id="navigation" data-8b-section="navigation">
   <div class="shell nav__bar">
     <a class="nav__brand" href="#opening" aria-label="Евгени Георгиев — начало">
@@ -823,7 +844,7 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
   </div>
 </header>
 
-<main>
+<main id="main-content">
 <!-- opening: two screens: headline over a huge colour field with a figure on its edge, then a statement and three anchors on the field's colour (animation: scene:opening-fall) -->
 <section id="opening" data-8b-section="opening">
   <div class="opening__stage">
