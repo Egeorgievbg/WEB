@@ -11,8 +11,7 @@
 .eg-float--hero-cursor{z-index:6;}
 .eg-float--hero-prism{z-index:2;}
 #opening .opening__stage>.eg-motion-layer{z-index:3;overflow:hidden;}
-#opening .opening__first{position:relative;z-index:5;pointer-events:none;}
-#opening .opening__first a,#opening .opening__first button{pointer-events:auto;}
+#opening .opening__first{position:relative;z-index:5;}
 #opening .opening__second{position:relative;z-index:4;}
 html.eg-motion-ready #opening .opening__figure{display:none!important;}
 #about>.eg-motion-layer{overflow:hidden;z-index:0;}
