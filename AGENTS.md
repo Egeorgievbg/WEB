@@ -27,3 +27,12 @@
 6. Проверете README.md и CREDITS.md при промяна на assets/лицензи.
 
 Оригиналният проект: https://github.com/8bsite/coworking-website-template
+
+## Motion design система (2026-11-13)
+
+- Преди GSAP промени прочетете `MOTION_SYSTEM.md` и официалните skills в `.agents/skills/gsap-*/SKILL.md`.
+- Source of truth: `assets/motion/eg-motion.js` / `eg-motion.css` и `assets/floating/`.
+- GSAP/ScrollTrigger са прогресивно подобрение, без промяна в оригиналните data-8b motion hooks.
+- Никога не използвайте CDN/временни ChatGPT links за PNG файлове; сервирайте ги от `/assets/floating/`.
+- Поддържайте адаптивни breakpoints и предпочитанията за намалено движение.
+- Не добавяйте GitHub Actions — наличните runners в акаунта са ограничени.

@@ -1,0 +1,122 @@
+/* Evgeni Motion System / Scene 01 — static site, GSAP enhanced.
+   The original 8B scroll-driven motion remains independent.
+   Images: first-party /assets/floating/*.png; no external image hosts. */
+
+:root { --egm-shadow: rgba(9, 32, 43, .22); }
+html { overflow-x: clip; }
+#opening, #about, #depths, #day, #rooms, #rules, #members, #evenings, #made {
+  isolation: isolate;
+}
+#about, #depths, #day, #rooms, #rules, #members, #evenings, #made {
+  position: relative;
+}
+#about > .shell, #depths > .shell, #day > .shell, #rooms > .shell,
+#rules > .shell, #members > .shell, #evenings > .shell, #made > .shell {
+  position: relative;
+  z-index: 2;
+}
+.egm-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: clip;
+  pointer-events: none;
+  user-select: none;
+  contain: paint;
+}
+#opening .egm-layer {
+  z-index: 3;
+  height: 100%;
+  overflow: visible;
+  contain: none;
+}
+.egm-place {
+  position: absolute;
+  left: var(--egm-x);
+  top: var(--egm-y);
+  width: var(--egm-w);
+  max-width: 60vw;
+  translate: -50% -50%;
+  opacity: var(--egm-opacity, .88);
+  transform-origin: center;
+  pointer-events: none;
+}
+.egm-anchor, .egm-entrance, .egm-pointer, .egm-drift { display: block; width: 100%; }
+.egm-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  aspect-ratio: auto 1 / 1;
+  filter: drop-shadow(0 20px 28px var(--egm-shadow));
+  -webkit-user-drag: none;
+  user-select: none;
+  backface-visibility: hidden;
+}
+.egm-place--hero { opacity: .98; }
+#opening .opening__figure { z-index: 4; mix-blend-mode: normal !important; }
+#opening .opening__figure-move { overflow: visible; }
+#opening .opening__figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain !important;
+  filter: drop-shadow(0 25px 44px rgba(9, 31, 47, .26)) !important;
+}
+#opening .opening__first { z-index: 5; }
+#opening .opening__copy { position: relative; z-index: 6; }
+#opening .egm-place--16 { filter: saturate(.84); }
+#opening .egm-place--17 { opacity: .70; }
+#opening .egm-place--19 { opacity: .90; }
+#about .egm-layer { opacity: .70; }
+#depths .egm-layer, #rooms .egm-layer { opacity: .65; }
+#members .egm-layer, #evenings .egm-layer { opacity: .75; }
+
+.egm-progress {
+  position: fixed;
+  inset: 0 auto auto 0;
+  height: 3px;
+  width: 100%;
+  z-index: 9998;
+  background: linear-gradient(90deg, #155c71, #56d9c0 55%, #c09b6a);
+  pointer-events: none;
+  transform-origin: left center;
+  transform: scaleX(0);
+  opacity: .95;
+}
+@media (max-width: 1100px) {
+  .egm-place { max-width: 35vw; }
+  #about .egm-layer, #rooms .egm-layer { opacity: .56; }
+  #opening .egm-place--19 { display: none; }
+  #opening .opening__figure { left: 50vw; height: 49vh; }
+}
+@media (max-width: 699px) {
+  .egm-place { max-width: 35vw; }
+  .egm-layer:not(.egm-layer--hero) { opacity: .55; }
+  .egm-place[data-egm-mobile="hide"] { display: none; }
+  #opening .egm-place--16 { display: none; }
+  #opening .egm-place--17 {
+    left: 69%;
+    top: 87%;
+    width: 58vw;
+    opacity: .60;
+  }
+  #opening .opening__figure {
+    left: 6vw !important;
+    right: 6vw;
+    width: 88vw !important;
+    height: 35vh !important;
+    top: 12vh !important;
+    bottom: auto !important;
+    aspect-ratio: 1 / 1;
+  }
+  #opening .opening__figure img { object-position: center !important; }
+  #opening .opening__first { padding-top: 54vh !important; align-content: start; }
+  #opening .opening__copy { max-width: 100%; }
+  #opening .opening__title { max-width: 100%; }
+  #depths .egm-layer, #rooms .egm-layer, #rules .egm-layer { opacity: .42; }
+  #about .egm-layer { opacity: .35; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .egm-progress { display: none; }
+  .egm-drift, .egm-anchor, .egm-entrance, .egm-pointer { transform: none !important; }
+}
