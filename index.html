@@ -6,79 +6,41 @@
   One HTML file, no build step. Notes for people and AI agents: README.md and AGENTS.md.
   Scroll motion: CSS scroll-driven animations and an inline script, no libraries. A GSAP build of this page: index.gsap.html.
 -->
-<html lang="en">
+<html lang="bg">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Isoline — a workspace built in layers of quiet</title>
-<meta name="description" content="Isoline is a members' workspace for deep work: three floors, each quieter than the one above it. Book a day, pick a depth, stay there.">
+<title>Евгени Георгиев — уеб, автоматизации и дигитални решения</title>
+<meta name="description" content="Евгени Георгиев — дигитален проектен партньор. Бизнес сайтове, електронна търговия, Python автоматизации, ERP/API интеграции и техническа поддръжка.">
 <meta name="generator" content="8B Templates">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Isoline — a workspace built in layers of quiet">
-<meta property="og:description" content="Isoline is a members' workspace for deep work: three floors, each quieter than the one above it. Book a day, pick a depth, stay there.">
-<meta property="og:image" content="https://your-domain.example/preview.png" data-8b-placeholder="og-image">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2064%2064'%3E%3Crect%20width%3D'64'%20height%3D'64'%20rx%3D'14'%20fill%3D'%23155386'%2F%3E%3Ctext%20x%3D'32'%20y%3D'45'%20font-family%3D'Arial%2CHelvetica%2Csans-serif'%20font-size%3D'38'%20font-weight%3D'700'%20text-anchor%3D'middle'%20fill%3D'%23fbfcfc'%3EI%3C%2Ftext%3E%3C%2Fsvg%3E" data-8b-placeholder="favicon">
+<meta property="og:title" content="Евгени Георгиев — дигитални решения, които работят">
+<meta property="og:description" content="Уеб, e-commerce, автоматизации, ERP/API и дигитално партньорство за бизнеса.">
+<meta property="og:url" content="https://websdite.vercel.app/">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2064%2064'%3E%3Crect%20width%3D'64'%20height%3D'64'%20rx%3D'13'%20fill%3D'%2314232a'%2F%3E%3Ctext%20x%3D'32'%20y%3D'43'%20font-family%3D'Arial'%20font-size%3D'28'%20font-weight%3D'800'%20text-anchor%3D'middle'%20fill%3D'%23bbf4e8'%3EEG%3C%2Ftext%3E%3C%2Fsvg%3E">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" href="https://fonts.gstatic.com/s/funneldisplay/v3/B50WF7FGv37QNVWgE0ga--4Pbb6dDYs.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="https://fonts.gstatic.com/s/hostgrotesk/v5/co3BmWBnlCJ3U42vbbfdwMjZpFjm.woff2" as="font" type="font/woff2" crossorigin>
-<style>
-/* latin-ext */
-@font-face {
-  font-family: 'Funnel Display';
-  font-style: normal;
-  font-weight: 500 600;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/funneldisplay/v3/B50WF7FGv37QNVWgE0ga--4Pbb6TDYsmgQ.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Funnel Display';
-  font-style: normal;
-  font-weight: 500 600;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/funneldisplay/v3/B50WF7FGv37QNVWgE0ga--4Pbb6dDYs.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Host Grotesk';
-  font-style: normal;
-  font-weight: 400 600;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/hostgrotesk/v5/co3BmWBnlCJ3U42vbbfdwMjZqljm0U0.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Host Grotesk';
-  font-style: normal;
-  font-weight: 400 600;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/hostgrotesk/v5/co3BmWBnlCJ3U42vbbfdwMjZpFjm.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Unbounded:wght@400;500;600;700&amp;display=swap">
 <style data-8b-part="layers">
 @layer tokens, base, atoms, layout, sections, scenes;
 </style>
 <style data-8b-part="tokens">
 @layer tokens {
 :root {
-  --color-1: #eceeef;
-  --color-2: #14171b;
-  --color-3: #4a5059;
-  --color-4: #fbfcfc;
-  --color-5: #d3d6d9;
-  --color-6: #93d9e4;
-  --color-7: #155386;
-  --color-8: #f6d88c;
-  --color-9: #e2580e;
-  --color-10: #cdbef2;
-  --color-11: #8b3887;
-  --font-1: "Funnel Display", "Funnel Display Fallback", Arial, sans-serif;
-  --font-2: "Host Grotesk", "Host Grotesk Fallback", Arial, sans-serif;
+  --color-1: #f2f3ee;
+  --color-2: #14232a;
+  --color-3: #43585f;
+  --color-4: #ffffff;
+  --color-5: #dce6e1;
+  --color-6: #bbf4e8;
+  --color-7: #145c71;
+  --color-8: #ffe3a4;
+  --color-9: #de7132;
+  --color-10: #d1c6ff;
+  --color-11: #6046a5;
+  --font-1: "Unbounded", Arial, sans-serif;
+  --font-2: "Manrope", Arial, sans-serif;
   --radius-1: 999px;
   --shadow-1: 0 0 0 0 var(--color-6), 0 0 0 0 var(--color-7), 0 0 0 0 var(--color-6);
   --shadow-2: 0 0 0 3px var(--color-6), 0 0 0 6px var(--color-7), 0 0 0 9px var(--color-6);
@@ -800,37 +762,37 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
 <!-- navigation: top bar: wordmark, section links, Book a day button; phone menu overlay -->
 <header id="navigation" data-8b-section="navigation">
   <div class="shell nav__bar">
-    <a class="nav__brand" href="#opening" aria-label="Isoline, back to the top">
+    <a class="nav__brand" href="#opening" aria-label="Евгени Георгиев — начало">
       <svg class="nav__mark m-well" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><g class="m-well__band" style="--well-d:0"><path d="M2 50a48 48 0 1 0 96 0a48 48 0 1 0 -96 0Z"/></g><g class="m-well__band" style="--well-d:.4"><path d="M11 42a33 33 0 1 0 66 0a33 33 0 1 0 -66 0Z"/></g><g class="m-well__band" style="--well-d:.75"><path d="M21 36a19 19 0 1 0 38 0a19 19 0 1 0 -38 0Z"/></g><g class="m-well__band" style="--well-d:1"><path d="M29 32a8 8 0 1 0 16 0a8 8 0 1 0 -16 0Z"/></g></svg>
-      <span>Isoline</span>
+      <span>Евгени.</span>
     </a>
-    <nav class="nav__links" aria-label="Main">
-      <a class="m-link" href="#depths">Depths</a>
-      <a class="m-link" href="#day">The day</a>
-      <a class="m-link" href="#rooms">Rooms</a>
-      <a class="m-link" href="#rules">Rules</a>
-      <a class="m-link" href="#members">Members</a>
-      <a class="m-link" href="#plans">Plans</a>
-      <a class="m-link" href="#visit">Visit</a>
+    <nav class="nav__links" aria-label="Основна навигация">
+      <a class="m-link" href="#depths">Услуги</a>
+      <a class="m-link" href="#day">Процес</a>
+      <a class="m-link" href="#rooms">Решения</a>
+      <a class="m-link" href="#rules">Принципи</a>
+      <a class="m-link" href="#members">Проекти</a>
+      <a class="m-link" href="#plans">Пакети</a>
+      <a class="m-link" href="#visit">Контакт</a>
     </nav>
-    <a class="m-btn nav__cta" href="#plans"><span class="m-btn__label">Book a day</span></a>
-    <button class="m-iconbtn nav__menu" type="button" aria-label="Open the menu" aria-expanded="false" aria-controls="nav-overlay"><span class="m-iconbtn__icon" aria-hidden="true"></span></button>
+    <a class="m-btn nav__cta" href="#plans"><span class="m-btn__label">Обсъди проект</span></a>
+    <button class="m-iconbtn nav__menu" type="button" aria-label="Отвори менюто" aria-expanded="false" aria-controls="nav-overlay"><span class="m-iconbtn__icon" aria-hidden="true"></span></button>
   </div>
-  <div class="nav__overlay" id="nav-overlay" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="nav__overlay" id="nav-overlay" role="dialog" aria-modal="true" aria-label="Меню">
     <div class="nav__overlay-top">
-      <span class="m-text-6">Isoline</span>
-      <button class="m-iconbtn nav__close" type="button" aria-label="Close the menu"><span class="m-iconbtn__icon" aria-hidden="true"></span></button>
+      <span class="m-text-6">Евгени.</span>
+      <button class="m-iconbtn nav__close" type="button" aria-label="Затвори менюто"><span class="m-iconbtn__icon" aria-hidden="true"></span></button>
     </div>
-    <nav class="nav__overlay-links" aria-label="Menu">
-      <a href="#depths">Depths</a>
-      <a href="#day">The day</a>
-      <a href="#rooms">Rooms</a>
-      <a href="#rules">Rules</a>
-      <a href="#members">Members</a>
-      <a href="#plans">Plans</a>
-      <a href="#visit">Visit</a>
+    <nav class="nav__overlay-links" aria-label="Меню">
+      <a href="#depths">Услуги</a>
+      <a href="#day">Процес</a>
+      <a href="#rooms">Решения</a>
+      <a href="#rules">Принципи</a>
+      <a href="#members">Проекти</a>
+      <a href="#plans">Пакети</a>
+      <a href="#visit">Контакт</a>
     </nav>
-    <a class="m-btn" href="#plans"><span class="m-btn__label">Book a day</span></a>
+    <a class="m-btn" href="#plans"><span class="m-btn__label">Обсъди проект</span></a>
   </div>
 </header>
 
@@ -847,22 +809,22 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
   </div>
   <div class="opening__first shell">
     <div class="opening__copy">
-      <h1 class="m-text-2 opening__title">Work at your own depth.</h1>
-      <p class="m-text-5 opening__lede">Isoline is a workspace built in layers. Talk on the top floor, flow on the middle one, and go quiet all the way down.</p>
+      <h1 class="m-text-2 opening__title">Дигиталното работи. Бизнесът расте.</h1>
+      <p class="m-text-5 opening__lede">Аз съм Евгени Георгиев. Изграждам сайтове, автоматизации и свързани бизнес системи — от идеята до надеждното внедряване.</p>
       <div class="opening__actions">
-        <a class="m-btn" href="#plans"><span class="m-btn__label">Book a day pass</span></a>
-        <a class="m-link" href="#depths">Walk the three floors</a>
+        <a class="m-btn" href="#plans"><span class="m-btn__label">Разкажи ми за проекта</span></a>
+        <a class="m-link" href="#depths">Разгледай услугите</a>
       </div>
     </div>
   </div>
   <div class="opening__second" id="manifesto">
     <div class="shell">
-      <p class="m-text-2 opening__statement" data-line>Most offices are built for interruption. We built ours like a well.</p>
-      <p class="m-text-5 opening__note" data-line>Three floors, each quieter than the one above it. You choose how far down to go each morning, and the building keeps everyone else at their own depth.</p>
-      <ul class="opening__depths" data-line aria-label="The three depths">
-        <li><a class="m-link" href="#depths">Shallow, level 3</a></li>
-        <li><a class="m-link" href="#depths">Flow, level 2</a></li>
-        <li><a class="m-link" href="#depths">Deep, level 1</a></li>
+      <p class="m-text-2 opening__statement" data-line>По-малко ръчна работа. Повече възможности за растеж.</p>
+      <p class="m-text-5 opening__note" data-line>Добрият сайт е само началото. Свързвам уеб, електронна търговия, Python, ERP и AI в практични решения с ясна бизнес цел.</p>
+      <ul class="opening__depths" data-line aria-label="Три направления">
+        <li><a class="m-link" href="#depths">Уеб и е-търговия</a></li>
+        <li><a class="m-link" href="#depths">Автоматизации и API</a></li>
+        <li><a class="m-link" href="#depths">Дигитално партньорство</a></li>
       </ul>
     </div>
   </div>
@@ -872,8 +834,8 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
 <section id="depths" data-8b-section="depths">
   <div class="shell">
     <div class="depths__head">
-      <h2 class="m-text-3" data-8b-motion="rise" data-8b-split="lines">Three depths. Pick one each morning.</h2>
-      <p class="m-text-5">Every floor has one colour and one rule about sound. The lower you sit, the deeper the colour and the quieter the room.</p>
+      <h2 class="m-text-3" data-8b-motion="rise" data-8b-split="lines">Три посоки. Един партньор.</h2>
+      <p class="m-text-5">От видимото за клиентите до системите зад бизнеса. Избери къде е най-голямото препятствие и започваме оттам.</p>
     </div>
     <div class="depths__wall">
       <ul class="depths__list" data-8b-items=":scope > .depths__item" data-8b-fixed="3">
@@ -887,9 +849,9 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
               </div>
             </figure>
             <div class="depths__caption">
-              <span class="m-badge-2"><span class="m-badge__swatch" aria-hidden="true"></span>Level 3</span>
-              <h3 class="m-text-6">Shallow</h3>
-              <p class="m-text">Calls, coffee and talk. The floor for starting the day, meeting people and coming back up after a long stretch.</p>
+              <span class="m-badge-2"><span class="m-badge__swatch" aria-hidden="true"></span>Посока 01</span>
+              <h3 class="m-text-6">Уеб</h3>
+              <p class="m-text">Представителни сайтове, лендинг страници и електронна търговия с фокус върху скорост, доверие и запитвания.</p>
             </div>
           </div>
         </li>
@@ -903,9 +865,9 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
               </div>
             </figure>
             <div class="depths__caption">
-              <span class="m-badge"><span class="m-badge__swatch" aria-hidden="true"></span>Level 2</span>
-              <h3 class="m-text-6">Flow</h3>
-              <p class="m-text">Long desks and low voices. Questions are whispered or written down, headphones are welcome, laptops stay open.</p>
+              <span class="m-badge"><span class="m-badge__swatch" aria-hidden="true"></span>Посока 02</span>
+              <h3 class="m-text-6">Системи</h3>
+              <p class="m-text">Python автоматизации, продуктови бази, ERP/API интеграции и работни потоци, които спестяват повтаряща се работа.</p>
             </div>
           </div>
         </li>
@@ -919,9 +881,9 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
               </div>
             </figure>
             <div class="depths__caption">
-              <span class="m-badge-3"><span class="m-badge__swatch" aria-hidden="true"></span>Level 1</span>
-              <h3 class="m-text-6">Deep</h3>
-              <p class="m-text">Single carrels and sealed booths. Phones sleep in lockers by the stairs, and nobody taps a shoulder.</p>
+              <span class="m-badge-3"><span class="m-badge__swatch" aria-hidden="true"></span>Посока 03</span>
+              <h3 class="m-text-6">Растеж</h3>
+              <p class="m-text">UX/CRO, SEO подготовка, AI съдържание и техническа координация за устойчиво развитие след старта.</p>
             </div>
           </div>
         </li>
@@ -938,37 +900,37 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
     </div>
     <div class="day__main">
       <div class="day__head">
-        <h2 class="m-text-3" data-8b-motion="rise" data-8b-split="lines">The building has a day of its own.</h2>
-        <p class="m-text-5">The floors open in order and the quiet moves through them. Here is a weekday, from the first key to the last light.</p>
+        <h2 class="m-text-3" data-8b-motion="rise" data-8b-split="lines">От идея до работещо решение.</h2>
+        <p class="m-text-5">Прозрачен процес, в който знаеш какво се изгражда, защо е необходимо и как ще приемем резултата.</p>
       </div>
       <ol class="day__list" data-8b-items=":scope > .day__row">
         <li class="day__row">
-          <time class="day__time" datetime="07:30">7:30</time>
-          <div class="day__body"><span class="m-badge-2"><span class="m-badge__swatch" aria-hidden="true"></span>Level 3</span><h3 class="m-text-6">Doors and coffee</h3><p class="m-text">The top floor opens first. Say hello now; it is the loudest the building gets.</p></div>
+          <time class="day__time" datetime="07:30">01</time>
+          <div class="day__body"><span class="m-badge-2"><span class="m-badge__swatch" aria-hidden="true"></span>Стратегия</span><h3 class="m-text-6">Откриване на проблема</h3><p class="m-text">Разбирам бизнеса, целите, потребителите и ограниченията, преди да предложа технология.</p></div>
         </li>
         <li class="day__row">
-          <time class="day__time" datetime="09:00">9:00</time>
-          <div class="day__body"><span class="m-badge"><span class="m-badge__swatch" aria-hidden="true"></span>Level 2</span><h3 class="m-text-6">Quiet hours begin</h3><p class="m-text">Flow fills up. Voices drop to a whisper and the long desks go still.</p></div>
+          <time class="day__time" datetime="09:00">02</time>
+          <div class="day__body"><span class="m-badge"><span class="m-badge__swatch" aria-hidden="true"></span>Анализ</span><h3 class="m-text-6">Карта на процесите</h3><p class="m-text">Описваме потоците, системите, източниците на данни и критичните зависимости.</p></div>
         </li>
         <li class="day__row">
-          <time class="day__time" datetime="10:30">10:30</time>
-          <div class="day__body"><span class="m-badge-3"><span class="m-badge__swatch" aria-hidden="true"></span>Level 1</span><h3 class="m-text-6">The deep block</h3><p class="m-text">Phones go into lockers at the stairs. Booths are held for three hours, no knocking.</p></div>
+          <time class="day__time" datetime="10:30">03</time>
+          <div class="day__body"><span class="m-badge-3"><span class="m-badge__swatch" aria-hidden="true"></span>Архитектура</span><h3 class="m-text-6">Ясен технически план</h3><p class="m-text">Определяме обхват, приоритети, сигурност, интеграции и критерии за приемане.</p></div>
         </li>
         <li class="day__row">
-          <time class="day__time" datetime="13:30">13:30</time>
-          <div class="day__body"><span class="m-badge-2"><span class="m-badge__swatch" aria-hidden="true"></span>Level 3</span><h3 class="m-text-6">Up for lunch</h3><p class="m-text">One long table on the roof. Talk about anything except what you are working on.</p></div>
+          <time class="day__time" datetime="13:30">04</time>
+          <div class="day__body"><span class="m-badge-2"><span class="m-badge__swatch" aria-hidden="true"></span>Дизайн</span><h3 class="m-text-6">UX и структура</h3><p class="m-text">Изграждаме съдържание и интерфейс, които водят клиента към правилното действие.</p></div>
         </li>
         <li class="day__row">
-          <time class="day__time" datetime="15:00">15:00</time>
-          <div class="day__body"><span class="m-badge-3"><span class="m-badge__swatch" aria-hidden="true"></span>Level 1</span><h3 class="m-text-6">Second descent</h3><p class="m-text">The afternoon block. Most members say this is when the real work happens.</p></div>
+          <time class="day__time" datetime="15:00">05</time>
+          <div class="day__body"><span class="m-badge-3"><span class="m-badge__swatch" aria-hidden="true"></span>Разработка</span><h3 class="m-text-6">Изпълнение на етапи</h3><p class="m-text">Работя с видими версии, контрол на промените, тестове и обратна връзка.</p></div>
         </li>
         <li class="day__row">
-          <time class="day__time" datetime="18:30">18:30</time>
-          <div class="day__body"><span class="m-badge-2"><span class="m-badge__swatch" aria-hidden="true"></span>Level 3</span><h3 class="m-text-6">Surfacing</h3><p class="m-text">Lights warm up, the roof opens, and on Thursdays someone talks about how they finished something.</p></div>
+          <time class="day__time" datetime="18:30">06</time>
+          <div class="day__body"><span class="m-badge-2"><span class="m-badge__swatch" aria-hidden="true"></span>Внедряване</span><h3 class="m-text-6">Проверка преди старт</h3><p class="m-text">Тестваме мобилна версия, производителност, сигурност и критични сценарии.</p></div>
         </li>
         <li class="day__row">
-          <time class="day__time" datetime="21:00">21:00</time>
-          <div class="day__body"><span class="m-badge"><span class="m-badge__swatch" aria-hidden="true"></span>All levels</span><h3 class="m-text-6">Last light</h3><p class="m-text">The building closes from the bottom up. Residents keep a key to their booth.</p></div>
+          <time class="day__time" datetime="21:00">07</time>
+          <div class="day__body"><span class="m-badge"><span class="m-badge__swatch" aria-hidden="true"></span>Развитие</span><h3 class="m-text-6">Поддръжка и оптимизация</h3><p class="m-text">Следим реалната употреба и надграждаме според нуждите на бизнеса.</p></div>
         </li>
       </ol>
     </div>
@@ -979,8 +941,8 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
 <section id="rooms" data-8b-section="rooms">
   <div class="shell">
     <div class="rooms__head">
-      <h2 class="m-text-3" data-8b-motion="rise" data-8b-split="lines">Rooms, in order of descent.</h2>
-      <p class="m-text-5">Four places to sit, listed the way you reach them: from the roof, down the stairs, to the carrels at the bottom.</p>
+      <h2 class="m-text-3" data-8b-motion="rise" data-8b-split="lines">Решения зад красивия интерфейс.</h2>
+      <p class="m-text-5">От публичната витрина до вътрешната инфраструктура: четири направления, които могат да работят самостоятелно или заедно.</p>
     </div>
     <ul class="rooms__list" data-8b-items=":scope > .rooms__row">
       <li class="rooms__row">
@@ -989,9 +951,9 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
           <div class="m-print__sheet"><img src="https://images.unsplash.com/photo-1777113310184-140ff530f4dd?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8Mnx8cm9vZnRvcCUyMHRlcnJhY2UlMjBjaGFpcnMlMjBjaXR5JTIwZXZlbmluZ3xlbnwxfDB8fHwxNzkxMjk1MjE1fDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=360&amp;q=60" alt="A roof terrace with benches, folded parasols and the city behind a glass rail" width="4080" height="3072" loading="lazy"></div>
         </figure>
         <div class="rooms__body">
-          <span class="m-badge-2"><span class="m-badge__swatch" aria-hidden="true"></span>Level 3</span>
-          <h3 class="m-text-6 rooms__name">The Roof</h3>
-          <p class="m-text">Benches, a long lunch table and the only place in the building for phone calls. Open from spring to the first frost.</p>
+          <span class="m-badge-2"><span class="m-badge__swatch" aria-hidden="true"></span>Уеб</span>
+          <h3 class="m-text-6 rooms__name">Бизнес сайтове</h3>
+          <p class="m-text">Бързи, достъпни и убедителни сайтове с ясна структура, съдържание и подготовка за търсачки.</p>
         </div>
       </li>
       <li class="rooms__row">
@@ -1000,9 +962,9 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
           <div class="m-print__sheet"><img src="https://images.unsplash.com/photo-1763890965393-1cea435581ab?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8OHx8YnJpZ2h0JTIwY293b3JraW5nJTIwbG9uZyUyMHRhYmxlfGVufDF8MHx8fDE3OTEyOTU1MTV8MA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=410&amp;q=60" alt="A man works alone at a long table in a room full of low sunlight" width="4160" height="2773" loading="lazy"></div>
         </figure>
         <div class="rooms__body">
-          <span class="m-badge"><span class="m-badge__swatch" aria-hidden="true"></span>Level 2</span>
-          <h3 class="m-text-6 rooms__name">The Long Room</h3>
-          <p class="m-text">Forty seats along two oak tables under west windows. Bring headphones; the afternoon light does the rest.</p>
+          <span class="m-badge"><span class="m-badge__swatch" aria-hidden="true"></span>Търговия</span>
+          <h3 class="m-text-6 rooms__name">E-commerce</h3>
+          <p class="m-text">Каталози, продуктови атрибути, поръчки, UX на покупката и свързване със складови процеси.</p>
         </div>
       </li>
       <li class="rooms__row">
@@ -1011,9 +973,9 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
           <div class="m-print__sheet"><img src="https://images.unsplash.com/photo-1665507299406-5a29d0e7d1df?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8M3x8bG9uZyUyMHdvb2RlbiUyMHRhYmxlJTIwZW1wdHklMjByb29tJTIwd2luZG93fGVufDF8MHx8fDE3OTEyOTUyMTR8MA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=410&amp;q=60" alt="A pale landing with a wooden rail around the stairwell and two windows" width="6240" height="4160" loading="lazy"></div>
         </figure>
         <div class="rooms__body">
-          <span class="m-badge"><span class="m-badge__swatch" aria-hidden="true"></span>Between levels</span>
-          <h3 class="m-text-6 rooms__name">The Stairs</h3>
-          <p class="m-text">The landing where you leave your phone and your voice. Lockers, water, and a bench for deciding how far down to go.</p>
+          <span class="m-badge"><span class="m-badge__swatch" aria-hidden="true"></span>Интеграции</span>
+          <h3 class="m-text-6 rooms__name">ERP / API</h3>
+          <p class="m-text">Обмен на продуктови данни, цени и наличности между системи с проверки и проследимост.</p>
         </div>
       </li>
       <li class="rooms__row">
@@ -1022,9 +984,9 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
           <div class="m-print__sheet"><img src="https://images.unsplash.com/photo-1637095937545-7d8c1edf4d2b?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NHx8YWNvdXN0aWMlMjBib290aCUyMG9mZmljZXxlbnwxfDB8fHwxNzkxMjk1MjEzfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=400&amp;q=60" alt="A white study carrel with a desk, a black chair and a round clock" width="6288" height="4338" loading="lazy"></div>
         </figure>
         <div class="rooms__body">
-          <span class="m-badge-3"><span class="m-badge__swatch" aria-hidden="true"></span>Level 1</span>
-          <h3 class="m-text-6 rooms__name">The Carrels</h3>
-          <p class="m-text">Twenty-two white carrels and six sealed booths. One clock per room, no screens on the walls, nothing to look at but the work.</p>
+          <span class="m-badge-3"><span class="m-badge__swatch" aria-hidden="true"></span>Автоматизация</span>
+          <h3 class="m-text-6 rooms__name">Python / AI</h3>
+          <p class="m-text">Вътрешни инструменти, обработка на документи, печат, отчети и автоматизирани работни задачи.</p>
         </div>
       </li>
     </ul>
@@ -1035,8 +997,8 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
 <section id="rules" data-8b-section="rules">
   <div class="shell">
     <div class="rules__head">
-      <h2 class="m-text-3" data-8b-motion="rise" data-8b-split="lines">Three rules, posted at the stairs.</h2>
-      <p class="m-text-5">Each floor has exactly one. They get shorter as you go down.</p>
+      <h2 class="m-text-3" data-8b-motion="rise" data-8b-split="lines">Три принципа. Без компромиси.</h2>
+      <p class="m-text-5">Красивият интерфейс има стойност само когато зад него има стабилна система.</p>
     </div>
     <div class="rules__stage">
       <div class="rules__strata" aria-hidden="true">
@@ -1052,19 +1014,19 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
       </div>
       <ol class="rules__list" data-8b-items=":scope > .rules__rule" data-8b-fixed="3">
         <li class="rules__rule">
-          <span class="m-badge-2"><span class="m-badge__swatch" aria-hidden="true"></span>Level 3</span>
-          <p class="m-text-6">Talk is fine. Calls go up on the roof.</p>
-          <p class="m-text">Meetings, laughter and coffee orders all belong up here.</p>
+          <span class="m-badge-2"><span class="m-badge__swatch" aria-hidden="true"></span>01 · Фокус</span>
+          <p class="m-text-6">Първо бизнес проблемът. После технологията.</p>
+          <p class="m-text">Всяка функция трябва да има ясна цел и измерим критерий за успех.</p>
         </li>
         <li class="rules__rule">
-          <span class="m-badge"><span class="m-badge__swatch" aria-hidden="true"></span>Level 2</span>
-          <p class="m-text-6">Whisper, or write it down.</p>
-          <p class="m-text">Every desk has a notepad for questions.</p>
+          <span class="m-badge"><span class="m-badge__swatch" aria-hidden="true"></span>02 · Качество</span>
+          <p class="m-text-6">Тестове, сигурност и контрол на версиите.</p>
+          <p class="m-text">Проектът трябва да остане надежден, разбираем и лесен за развитие.</p>
         </li>
         <li class="rules__rule">
-          <span class="m-badge-3"><span class="m-badge__swatch" aria-hidden="true"></span>Level 1</span>
-          <p class="m-text-6">Phones sleep upstairs.</p>
-          <p class="m-text">Lockers wait on the landing.</p>
+          <span class="m-badge-3"><span class="m-badge__swatch" aria-hidden="true"></span>03 · Партньорство</span>
+          <p class="m-text-6">Ясен обхват. Прозрачно изпълнение.</p>
+          <p class="m-text">Комуникацията и документацията са част от крайния продукт.</p>
         </li>
       </ol>
     </div>
