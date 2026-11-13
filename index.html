@@ -770,6 +770,20 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
  .visit__status{max-width:42ch;}
 }
 @media(max-width:680px){.opening__title{font-size:clamp(2.3rem,9.6vw,3.8rem)}.opening__copy:before{font-size:.6rem}}
+</style><style>
+.eg-about{padding:clamp(5rem,10vw,11rem) 0;background:#132a33;color:#effaf5;position:relative;overflow:hidden;}
+.eg-about:before{content:"EG.";position:absolute;right:-.05em;bottom:-.29em;font:700 clamp(15rem,34vw,42rem)/1 "Unbounded",sans-serif;color:rgba(187,244,232,.04);pointer-events:none;}
+.eg-about__grid{display:grid;grid-template-columns:minmax(130px,.34fr) 1fr;gap:clamp(2rem,7vw,8rem);position:relative;}
+.eg-about__index{font:700 .78rem/1.9 "Manrope",sans-serif;letter-spacing:.11em;color:#bbf4e8;}
+.eg-about__index span{color:#91b0b4;}
+.eg-about__content h2{font:500 clamp(2.1rem,4.7vw,5.1rem)/1.17 "Unbounded",sans-serif;letter-spacing:-.045em;max-width:18ch;}
+.eg-about__content em{font-style:normal;color:#bbf4e8;}
+.eg-about__content p{font:400 clamp(1.04rem,1.4vw,1.35rem)/1.75 "Manrope",sans-serif;color:#d3e4e1;max-width:57rem;margin:2.5rem 0;}
+.eg-about__actions{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;}
+.eg-about__actions .m-btn{background:#bbf4e8;color:#14232a;}
+.eg-about__actions .m-link{font-size:.91rem;}
+.eg-mailnote{font-size:.78rem;color:var(--color-3);margin-top:1rem;max-width:43rem;}
+@media(max-width:700px){.eg-about__grid{grid-template-columns:1fr;gap:2rem}.eg-about__content h2{font-size:clamp(1.9rem,8vw,3rem);overflow-wrap:break-word}.eg-about__actions{align-items:flex-start;flex-direction:column}}
 </style></head>
 <body>
 <!-- navigation: top bar: wordmark, section links, Book a day button; phone menu overlay -->
@@ -844,6 +858,21 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
 </section>
 
 <!-- depths: three hanging posters, one per zone or level, each with its own colour field, photo and caption (demo: the three floors) (animation: scene:depths-lower) -->
+<section id="about" class="eg-about" aria-labelledby="eg-about-title">
+ <div class="shell eg-about__grid">
+  <div class="eg-about__index">01 / КОЙ СЪМ<br><span>ТЕХНОЛОГИЯ + БИЗНЕС</span></div>
+  <div class="eg-about__content">
+   <h2 id="eg-about-title">Не предлагам просто код.<br><em>Изграждам работещи решения.</em></h2>
+   <p>Аз съм Евгени Георгиев — дигитален проектен партньор с опит в уеб разработка, електронна търговия, ERP/API интеграции и Python автоматизации. Свързвам технологиите с реалните нужди на бизнеса: по-ясни процеси, по-малко ръчна работа и по-удобно клиентско преживяване.</p>
+   <div class="eg-about__actions">
+    <a class="m-btn" href="#visit"><span class="m-btn__label">Да обсъдим проекта</span></a>
+    <a class="m-link" href="https://github.com/Egeorgievbg" target="_blank" rel="noopener noreferrer">Моите разработки в GitHub ↗</a>
+    <a class="m-link" href="https://evgeni-georgiev.com/" target="_blank" rel="noopener noreferrer">Основен сайт ↗</a>
+   </div>
+  </div>
+ </div>
+</section>
+
 <section id="depths" data-8b-section="depths">
   <div class="shell">
     <div class="depths__head">
@@ -1062,8 +1091,8 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
         <div class="members__body">
           <span class="m-badge-2"><span class="m-badge__swatch" aria-hidden="true"></span>Уеб + каталог</span>
           <h3 class="m-text-6">RAIDER BG</h3>
-          <p class="m-text-4 members__trade">Каталог / разработка</p><p class="members__project-link"><a class="m-link" href="https://github.com/Egeorgievbg/raiderbg" target="_blank" rel="noopener noreferrer">Виж проекта ↗</a></p>
-          <p class="m-text members__quote">Структура на технически каталог, категории и продуктова информация с акцент върху намирането на правилния инструмент.</p>
+          <p class="m-text-4 members__trade">Каталог / разработка</p><p class="m-text members__quote">Структура на технически каталог, категории и продуктова информация с акцент върху намирането на правилния инструмент.</p>
+          <p class="members__project-link"><a class="m-link" href="https://github.com/Egeorgievbg/raiderbg" target="_blank" rel="noopener noreferrer">Виж проекта ↗</a></p>
         </div>
       </li>
       <li class="members__item" data-level="2">
@@ -1074,8 +1103,8 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
         <div class="members__body">
           <span class="m-badge"><span class="m-badge__swatch" aria-hidden="true"></span>Уеб</span>
           <h3 class="m-text-6">Summertime.bg</h3>
-          <p class="m-text-4 members__trade">Туризъм / сайт</p><p class="members__project-link"><a class="m-link" href="https://summertime.bg/" target="_blank" rel="noopener noreferrer">Виж проекта ↗</a></p>
-          <p class="m-text members__quote">Дигитално представяне на места за почивка с ясно сравнение на вариантите и удобен път до запитване.</p>
+          <p class="m-text-4 members__trade">Туризъм / сайт</p><p class="m-text members__quote">Дигитално представяне на места за почивка с ясно сравнение на вариантите и удобен път до запитване.</p>
+          <p class="members__project-link"><a class="m-link" href="https://summertime.bg/" target="_blank" rel="noopener noreferrer">Виж проекта ↗</a></p>
         </div>
       </li>
       <li class="members__item" data-level="1">
@@ -1086,8 +1115,8 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
         <div class="members__body">
           <span class="m-badge-3"><span class="m-badge__swatch" aria-hidden="true"></span>Уеб + UX</span>
           <h3 class="m-text-6">GPTS 360</h3>
-          <p class="m-text-4 members__trade">Събития / сайт</p><p class="members__project-link"><a class="m-link" href="https://360.gptsprintshop.com/" target="_blank" rel="noopener noreferrer">Виж проекта ↗</a></p>
-          <p class="m-text members__quote">Представяне на 360° видео услуги, сценарии за събития и структура за запитвания.</p>
+          <p class="m-text-4 members__trade">Събития / сайт</p><p class="m-text members__quote">Представяне на 360° видео услуги, сценарии за събития и структура за запитвания.</p>
+          <p class="members__project-link"><a class="m-link" href="https://360.gptsprintshop.com/" target="_blank" rel="noopener noreferrer">Виж проекта ↗</a></p>
         </div>
       </li>
       <li class="members__item" data-level="1">
@@ -1098,8 +1127,8 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
         <div class="members__body">
           <span class="m-badge-3"><span class="m-badge__swatch" aria-hidden="true"></span>Уеб</span>
           <h3 class="m-text-6">ThinkMove.bg</h3>
-          <p class="m-text-4 members__trade">Образование / сайт</p><p class="members__project-link"><a class="m-link" href="https://thinkmove.bg/" target="_blank" rel="noopener noreferrer">Виж проекта ↗</a></p>
-          <p class="m-text members__quote">Проект в областта на шахматното обучение с фокус върху представянето на програмата и записването.</p>
+          <p class="m-text-4 members__trade">Образование / сайт</p><p class="m-text members__quote">Проект в областта на шахматното обучение с фокус върху представянето на програмата и записването.</p>
+          <p class="members__project-link"><a class="m-link" href="https://thinkmove.bg/" target="_blank" rel="noopener noreferrer">Виж проекта ↗</a></p>
         </div>
       </li>
     </ul>
@@ -1183,7 +1212,7 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
       <li class="plans__item">
         <svg class="m-well-2 plan__well" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><g class="m-well__band" style="--well-d:0"><path d="M383.4 256.7C372.3 292.7 345.2 331.2 315 353.7C284.9 376.3 240.3 391.4 202.7 392C165.1 392.5 120.1 378.6 89.4 356.9C58.6 335.2 30.4 297.5 18.3 261.9C6.1 226.3 5.5 179.2 16.6 143.3C27.7 107.3 54.8 68.8 85 46.3C115.1 23.7 159.7 8.6 197.3 8C234.9 7.5 279.9 21.4 310.6 43.1C341.4 64.8 369.6 102.5 381.7 138.1C393.9 173.7 394.5 220.8 383.4 256.7Z"/></g><g class="m-well__band" style="--well-d:0.08"><path d="M366.7 248C356.4 281.2 331.4 316.7 303.6 337.5C275.8 358.3 234.6 372.3 199.9 372.8C165.2 373.3 123.6 360.5 95.2 340.5C66.9 320.5 40.8 285.6 29.6 252.8C18.4 219.9 17.8 176.4 28.1 143.3C38.3 110.1 63.4 74.5 91.2 53.7C119 32.9 160.1 18.9 194.9 18.4C229.6 17.9 271.1 30.8 299.5 50.8C327.9 70.8 353.9 105.6 365.1 138.5C376.3 171.3 376.9 214.8 366.7 248Z"/></g><g class="m-well__band" style="--well-d:0.15"><path d="M351.1 239.9C341.6 270.5 318.5 303.2 292.9 322.4C267.2 341.6 229.3 354.5 197.2 355C165.2 355.4 126.9 343.6 100.7 325.1C74.6 306.7 50.5 274.6 40.2 244.3C29.9 213.9 29.3 173.8 38.8 143.2C48.2 112.7 71.4 79.9 97 60.7C122.6 41.5 160.6 28.6 192.6 28.1C224.6 27.7 263 39.5 289.1 58C315.3 76.4 339.3 108.5 349.7 138.8C360 169.2 360.6 209.3 351.1 239.9Z"/></g><g class="m-well__band" style="--well-d:0.23"><path d="M335.9 231.9C327.2 260 306 290.1 282.5 307.7C258.9 325.3 224.1 337.2 194.7 337.6C165.3 338 130.1 327.1 106.1 310.2C82.1 293.3 60 263.8 50.5 236C41 208.1 40.5 171.3 49.2 143.2C57.9 115.2 79.1 85.1 102.6 67.5C126.2 49.8 161 38 190.4 37.6C219.8 37.1 255 48 279 65C303 81.9 325.1 111.4 334.6 139.2C344.1 167 344.6 203.8 335.9 231.9Z"/></g><g class="m-well__band" style="--well-d:0.31"><path d="M321 224.1C313 249.7 293.7 277.2 272.2 293.3C250.7 309.3 219 320.1 192.1 320.5C165.3 320.9 133.3 311 111.3 295.5C89.4 280.1 69.3 253.2 60.7 227.8C52 202.4 51.5 168.9 59.5 143.2C67.4 117.6 86.7 90.2 108.2 74.1C129.7 58 161.5 47.2 188.3 46.8C215.1 46.5 247.2 56.4 269.1 71.8C291 87.3 311.1 114.2 319.8 139.6C328.4 164.9 328.9 198.5 321 224.1Z"/></g></svg>
         <div class="plans__body">
-          <h3 class="m-text-6">Business Website</h3>
+          <h3 class="m-text-6">Бизнес сайт</h3>
           <p class="plans__price">01 <small>сайт</small></p>
           <ul class="plans__features m-text">
             <li>Структура, дизайн и разработка</li>
@@ -1196,7 +1225,7 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
       <li class="plans__item">
         <svg class="m-well plan__well" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><g class="m-well__band" style="--well-d:0"><path d="M383.4 256.7C372.3 292.7 345.2 331.2 315 353.7C284.9 376.3 240.3 391.4 202.7 392C165.1 392.5 120.1 378.6 89.4 356.9C58.6 335.2 30.4 297.5 18.3 261.9C6.1 226.3 5.5 179.2 16.6 143.3C27.7 107.3 54.8 68.8 85 46.3C115.1 23.7 159.7 8.6 197.3 8C234.9 7.5 279.9 21.4 310.6 43.1C341.4 64.8 369.6 102.5 381.7 138.1C393.9 173.7 394.5 220.8 383.4 256.7Z"/></g><g class="m-well__band" style="--well-d:0.08"><path d="M371.9 248.9C361.7 282 336.6 317.6 308.8 338.4C281 359.2 239.9 373.2 205.1 373.7C170.4 374.2 128.9 361.4 100.5 341.3C72.1 321.3 46.1 286.5 34.9 253.6C23.7 220.8 23.1 177.3 33.3 144.1C43.6 111 68.6 75.4 96.4 54.6C124.2 33.8 165.4 19.8 200.1 19.3C234.8 18.8 276.4 31.7 304.8 51.7C333.1 71.7 359.2 106.5 370.4 139.4C381.6 172.2 382.2 215.7 371.9 248.9Z"/></g><g class="m-well__band" style="--well-d:0.15"><path d="M361.2 241.5C351.8 272.1 328.6 304.9 303 324.1C277.4 343.3 239.4 356.2 207.4 356.7C175.4 357.1 137 345.3 110.9 326.8C84.7 308.4 60.7 276.3 50.3 245.9C40 215.6 39.4 175.5 48.9 144.9C58.4 114.3 81.5 81.6 107.1 62.4C132.8 43.2 170.7 30.3 202.8 29.8C234.8 29.3 273.1 41.2 299.3 59.7C325.4 78.1 349.5 110.2 359.8 140.5C370.1 170.9 370.7 211 361.2 241.5Z"/></g><g class="m-well__band" style="--well-d:0.23"><path d="M350.8 234.4C342.1 262.5 320.9 292.6 297.4 310.2C273.8 327.8 239 339.7 209.6 340.1C180.2 340.5 145 329.6 121 312.7C97 295.7 74.9 266.3 65.4 238.4C55.9 210.6 55.4 173.8 64.1 145.7C72.8 117.6 94 87.6 117.5 69.9C141.1 52.3 175.9 40.5 205.3 40C234.7 39.6 269.9 50.5 293.9 67.4C317.9 84.4 340 113.9 349.5 141.7C359 169.5 359.5 206.3 350.8 234.4Z"/></g><g class="m-well__band" style="--well-d:0.31"><path d="M340.5 227.4C332.6 253 313.3 280.4 291.8 296.5C270.3 312.6 238.5 323.4 211.7 323.8C184.9 324.2 152.8 314.2 130.9 298.8C109 283.3 88.9 256.5 80.2 231.1C71.6 205.7 71.1 172.1 79 146.5C87 120.9 106.3 93.4 127.8 77.4C149.3 61.3 181 50.5 207.9 50.1C234.7 49.7 266.7 59.6 288.7 75.1C310.6 90.6 330.7 117.4 339.3 142.8C348 168.2 348.5 201.8 340.5 227.4Z"/></g><g class="m-well__band" style="--well-d:0.38"><path d="M330.4 220.5C323.2 243.6 305.7 268.5 286.3 283C266.9 297.5 238.1 307.3 213.9 307.7C189.6 308 160.6 299 140.7 285.1C120.9 271.1 102.7 246.8 94.9 223.8C87.1 200.8 86.6 170.4 93.8 147.3C101 124.1 118.5 99.3 137.9 84.7C157.3 70.2 186.1 60.4 210.3 60C234.6 59.7 263.6 68.7 283.5 82.7C303.3 96.6 321.5 121 329.3 143.9C337.1 166.9 337.6 197.3 330.4 220.5Z"/></g><g class="m-well__band" style="--well-d:0.46"><path d="M320.4 213.6C314 234.4 298.3 256.6 280.9 269.6C263.5 282.7 237.7 291.4 216 291.7C194.2 292.1 168.2 284 150.5 271.5C132.7 259 116.4 237.2 109.4 216.6C102.4 196 102 168.8 108.4 148C114.8 127.3 130.5 105 147.9 92C165.3 79 191.1 70.2 212.8 69.9C234.6 69.6 260.6 77.6 278.3 90.1C296.1 102.7 312.4 124.5 319.4 145C326.4 165.6 326.8 192.8 320.4 213.6Z"/></g><g class="m-well__band" style="--well-d:0.54"><path d="M310.4 206.8C304.8 225.2 290.9 244.9 275.5 256.4C260.1 267.9 237.3 275.7 218.1 275.9C198.8 276.2 175.8 269.1 160.1 258C144.4 246.9 129.9 227.6 123.7 209.4C117.5 191.2 117.2 167.1 122.9 148.8C128.6 130.4 142.4 110.7 157.8 99.2C173.2 87.7 196 79.9 215.3 79.6C234.5 79.4 257.5 86.5 273.2 97.6C288.9 108.6 303.4 127.9 309.6 146.1C315.8 164.3 316.1 188.4 310.4 206.8Z"/></g><g class="m-well__band" style="--well-d:0.62"><path d="M300.6 200C295.6 216 283.5 233.2 270.1 243.2C256.7 253.2 236.9 260 220.1 260.2C203.4 260.5 183.3 254.3 169.7 244.6C156 235 143.4 218.2 138 202.3C132.6 186.5 132.3 165.5 137.3 149.5C142.2 133.5 154.3 116.4 167.7 106.4C181.1 96.3 201 89.6 217.7 89.3C234.4 89.1 254.5 95.3 268.2 104.9C281.9 114.6 294.4 131.4 299.8 147.2C305.2 163.1 305.5 184 300.6 200Z"/></g><g class="m-well__band" style="--well-d:0.69"><path d="M290.8 193.3C286.5 207 276.2 221.6 264.8 230.1C253.4 238.7 236.5 244.4 222.2 244.6C207.9 244.8 190.8 239.6 179.2 231.3C167.5 223.1 156.8 208.8 152.2 195.3C147.6 181.8 147.3 163.9 151.6 150.3C155.8 136.6 166.1 122 177.5 113.5C188.9 104.9 205.8 99.1 220.1 98.9C234.4 98.7 251.5 104 263.1 112.3C274.8 120.5 285.5 134.8 290.1 148.3C294.7 161.8 295 179.7 290.8 193.3Z"/></g></svg>
         <div class="plans__body">
-          <h3 class="m-text-6">Automation Sprint</h3>
+          <h3 class="m-text-6">Автоматизация</h3>
           <p class="plans__price">02 <small>спринт</small></p>
           <ul class="plans__features m-text">
             <li>Анализ на конкретен процес</li>
@@ -1209,7 +1238,7 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
       <li class="plans__item">
         <svg class="m-well-3 plan__well" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><g class="m-well__band" style="--well-d:0"><path d="M383.4 256.7C372.3 292.7 345.2 331.2 315 353.7C284.9 376.3 240.3 391.4 202.7 392C165.1 392.5 120.1 378.6 89.4 356.9C58.6 335.2 30.4 297.5 18.3 261.9C6.1 226.3 5.5 179.2 16.6 143.3C27.7 107.3 54.8 68.8 85 46.3C115.1 23.7 159.7 8.6 197.3 8C234.9 7.5 279.9 21.4 310.6 43.1C341.4 64.8 369.6 102.5 381.7 138.1C393.9 173.7 394.5 220.8 383.4 256.7Z"/></g><g class="m-well__band" style="--well-d:0.08"><path d="M368.4 255.9C358.2 289 333.1 324.6 305.3 345.4C277.5 366.2 236.4 380.2 201.6 380.7C166.9 381.2 125.4 368.3 97 348.3C68.6 328.3 42.6 293.5 31.4 260.6C20.2 227.8 19.6 184.3 29.8 151.1C40.1 118 65.1 82.4 92.9 61.6C120.7 40.8 161.9 26.8 196.6 26.3C231.3 25.8 272.9 38.6 301.3 58.7C329.6 78.7 355.7 113.5 366.9 146.4C378.1 179.2 378.7 222.7 368.4 255.9Z"/></g><g class="m-well__band" style="--well-d:0.15"><path d="M354.5 255.1C345 285.7 321.9 318.4 296.3 337.6C270.6 356.8 232.6 369.7 200.6 370.2C168.6 370.7 130.3 358.8 104.1 340.3C77.9 321.9 53.9 289.8 43.6 259.5C33.3 229.1 32.7 189 42.2 158.5C51.6 127.9 74.7 95.1 100.4 75.9C126 56.7 164 43.8 196 43.3C228 42.9 266.3 54.7 292.5 73.2C318.7 91.6 342.7 123.7 353 154.1C363.4 184.4 363.9 224.5 354.5 255.1Z"/></g><g class="m-well__band" style="--well-d:0.23"><path d="M340.9 254.3C332.2 282.4 311 312.4 287.4 330.1C263.9 347.7 229 359.5 199.6 360C170.2 360.4 135.1 349.5 111.1 332.6C87 315.6 65 286.1 55.5 258.3C46 230.5 45.5 193.7 54.2 165.6C62.9 137.5 84.1 107.4 107.6 89.8C131.1 72.2 166 60.3 195.4 59.9C224.8 59.5 260 70.4 284 87.3C308 104.3 330.1 133.7 339.5 161.6C349 189.4 349.5 226.2 340.9 254.3Z"/></g><g class="m-well__band" style="--well-d:0.31"><path d="M327.5 253.5C319.6 279.1 300.2 306.6 278.7 322.6C257.3 338.7 225.5 349.5 198.7 349.9C171.9 350.3 139.8 340.4 117.9 324.9C96 309.4 75.8 282.6 67.2 257.2C58.5 231.8 58.1 198.2 66 172.6C73.9 147 93.3 119.6 114.7 103.5C136.2 87.4 168 76.6 194.8 76.2C221.6 75.8 253.7 85.8 275.6 101.2C297.5 116.7 317.6 143.5 326.3 168.9C334.9 194.3 335.4 227.9 327.5 253.5Z"/></g><g class="m-well__band" style="--well-d:0.38"><path d="M314.3 252.7C307.1 275.9 289.6 300.7 270.2 315.3C250.7 329.8 222 339.6 197.7 340C173.5 340.3 144.4 331.3 124.6 317.3C104.8 303.4 86.6 279 78.7 256.1C70.9 233.1 70.5 202.7 77.7 179.5C84.8 156.4 102.3 131.5 121.8 117C141.2 102.5 170 92.7 194.2 92.3C218.5 92 247.5 101 267.3 114.9C287.2 128.9 305.4 153.2 313.2 176.2C321 199.2 321.4 229.6 314.3 252.7Z"/></g><g class="m-well__band" style="--well-d:0.46"><path d="M301.2 252C294.8 272.7 279.1 295 261.7 308C244.3 321 218.5 329.8 196.8 330.1C175 330.4 149 322.4 131.3 309.9C113.5 297.3 97.2 275.5 90.2 255C83.2 234.4 82.8 207.2 89.2 186.4C95.6 165.6 111.3 143.4 128.7 130.4C146.1 117.3 171.9 108.6 193.6 108.3C215.4 107.9 241.4 116 259.1 128.5C276.9 141 293.2 162.8 300.2 183.4C307.2 204 307.6 231.2 301.2 252Z"/></g><g class="m-well__band" style="--well-d:0.54"><path d="M288.2 251.2C282.5 269.6 268.7 289.3 253.3 300.8C237.9 312.3 215.1 320.1 195.8 320.4C176.6 320.6 153.6 313.5 137.9 302.4C122.2 291.4 107.7 272.1 101.5 253.9C95.3 235.7 95 211.6 100.7 193.2C106.4 174.8 120.2 155.1 135.6 143.6C151 132.1 173.8 124.3 193.1 124.1C212.3 123.8 235.3 130.9 251 142C266.7 153.1 281.2 172.4 287.4 190.6C293.6 208.8 293.9 232.9 288.2 251.2Z"/></g><g class="m-well__band" style="--well-d:0.62"><path d="M275.3 250.5C270.4 266.5 258.3 283.6 244.9 293.6C231.5 303.7 211.6 310.4 194.9 310.7C178.2 310.9 158.1 304.7 144.4 295.1C130.8 285.4 118.2 268.6 112.8 252.8C107.4 236.9 107.1 216 112 200C117 184 129.1 166.8 142.5 156.8C155.9 146.8 175.7 140 192.5 139.8C209.2 139.5 229.3 145.7 242.9 155.4C256.6 165 269.2 181.8 274.6 197.7C280 213.5 280.3 234.5 275.3 250.5Z"/></g><g class="m-well__band" style="--well-d:0.69"><path d="M262.6 249.7C258.3 263.4 248 278 236.6 286.5C225.2 295.1 208.3 300.9 194 301.1C179.7 301.3 162.6 296 151 287.7C139.3 279.5 128.6 265.2 124 251.7C119.4 238.2 119.1 220.3 123.3 206.7C127.6 193 137.9 178.4 149.3 169.9C160.7 161.3 177.6 155.6 191.9 155.4C206.2 155.2 223.3 160.4 234.9 168.7C246.6 176.9 257.3 191.2 261.9 204.7C266.5 218.2 266.8 236.1 262.6 249.7Z"/></g><g class="m-well__band" style="--well-d:0.77"><path d="M249.8 249C246.3 260.3 237.8 272.4 228.3 279.5C218.9 286.5 204.9 291.3 193.1 291.5C181.2 291.7 167.1 287.3 157.4 280.5C147.8 273.7 138.9 261.8 135.1 250.6C131.3 239.4 131.1 224.6 134.6 213.4C138.1 202.1 146.6 190 156.1 182.9C165.5 175.8 179.5 171 191.4 170.9C203.2 170.7 217.3 175.1 227 181.9C236.6 188.7 245.5 200.5 249.3 211.7C253.1 222.9 253.3 237.7 249.8 249Z"/></g><g class="m-well__band" style="--well-d:0.85"><path d="M237.2 248.3C234.4 257.2 227.6 266.8 220.1 272.4C212.6 278 201.5 281.8 192.1 282C182.8 282.1 171.6 278.6 163.9 273.2C156.2 267.8 149.2 258.4 146.2 249.6C143.2 240.7 143 228.9 145.8 220C148.5 211 155.3 201.4 162.8 195.8C170.3 190.2 181.4 186.4 190.8 186.3C200.2 186.2 211.4 189.6 219 195C226.7 200.4 233.7 209.8 236.7 218.7C239.8 227.6 239.9 239.3 237.2 248.3Z"/></g><g class="m-well__band" style="--well-d:0.92"><path d="M224.6 247.5C222.5 254.2 217.5 261.3 212 265.4C206.4 269.6 198.2 272.4 191.2 272.5C184.3 272.6 176 270 170.3 266C164.7 262 159.4 255.1 157.2 248.5C155 241.9 154.9 233.2 156.9 226.6C159 220 164 212.9 169.5 208.7C175.1 204.6 183.3 201.8 190.2 201.7C197.2 201.6 205.5 204.1 211.1 208.1C216.8 212.1 222 219.1 224.3 225.7C226.5 232.2 226.6 240.9 224.6 247.5Z"/></g><g class="m-well__band" style="--well-d:1"><path d="M212 246.8C210.7 251.1 207.4 255.7 203.8 258.4C200.2 261.2 194.8 263 190.3 263C185.8 263.1 180.4 261.4 176.7 258.8C173 256.2 169.6 251.7 168.2 247.4C166.7 243.2 166.7 237.5 168 233.2C169.3 228.9 172.6 224.3 176.2 221.6C179.8 218.8 185.2 217 189.7 217C194.2 216.9 199.6 218.6 203.3 221.2C207 223.8 210.4 228.3 211.8 232.6C213.3 236.8 213.3 242.5 212 246.8Z"/></g></svg>
         <div class="plans__body">
-          <h3 class="m-text-6">Digital Partner</h3>
+          <h3 class="m-text-6">Дигитален партньор</h3>
           <p class="plans__price">03 <small>партньорство</small></p>
           <ul class="plans__features m-text">
             <li>Техническа координация и план</li>
@@ -1258,7 +1287,8 @@ if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.support
           <button class="m-btn" type="submit"><span class="m-btn__label">Подготви имейл</span></button>
           <p class="m-text visit__status" role="status" aria-live="polite" data-sent="Отваря се имейл приложението. За изпращане натисни „Изпрати“." data-missing="Въведи име и валиден имейл адрес."></p>
         </div>
-      </form>
+      <p class="m-text eg-mailnote">Формата подготвя имейл, който изпращаш от собственото си имейл приложение. Няма автоматично изпращане или съхранение на данните в сайта.</p>
+</form>
     </div>
   </div>
 </section>
