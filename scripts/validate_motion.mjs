@@ -22,5 +22,16 @@ if(!html.includes('ScrollTrigger.min.js'))errors.push('ScrollTrigger not loaded'
 if(!js.includes('prefers-reduced-motion'))errors.push('Reduced-motion guard missing');
 if(!js.includes('visibilitychange'))errors.push('Hidden-tab pause missing');
 if(!css.includes('pointer-events:none'))errors.push('Decorative layers may steal clicks');
+// V2 regression protection: every transform owner is on a distinct node.
+for(const part of ['eg-float__scroll','eg-float__reveal','eg-float__drift','eg-float__parallax','eg-float__image']){
+  if(!js.includes(part) || !css.includes(part)) errors.push('Missing dedicated transform layer: '+part);
+}
+for(const capability of ['legacyScrollBridge','eg-legacy-bridge','data-8b-live','onToggle','visibilitychange','prefers-reduced-motion','pointerleave']){
+  if(!(js+css).includes(capability))errors.push('Missing motion-compatibility capability: '+capability);
+}
+if(!js.includes('gsap.to(item.drift') || !js.includes('gsap.fromTo(item.scroll') || !js.includes('gsap.quickTo(item.pointer')) errors.push('Motion ownership has regressed.');
+if(!js.includes('duration: speed') || !js.includes('sway * direction'))errors.push('Continuous kinetic floating has regressed.');
+if(css.includes('html.eg-gsap-live [data-8b-live]'))errors.push('Do not disable legacy native animation timelines globally.');
+if(!js.includes("document.documentElement.hasAttribute('data-8b-live')"))errors.push('Legacy ScrollTrigger fallback must run only without native 8B scenes.');
 if(errors.length){console.error(errors.join('\n'));process.exit(1);}
-console.log('PASS: 20 optimized assets, motion selectors, fallback and library links');
+console.log('PASS: 20 assets, isolated GSAP transform layers, native 8B + Firefox fallback, visibility and reduced-motion guards');
