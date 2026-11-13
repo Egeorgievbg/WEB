@@ -1,6 +1,8 @@
-/* Evgeni Georgiev · Motion identity · GSAP 3.13 / ScrollTrigger
-   Works with the original 8B CSS motion system without changing its hooks.
-   All sprites are real, locally hosted optimized WebP derivatives of the original PNG artwork. */
+/* Evgeni Georgiev · Kinetic Motion V2 — GSAP 3.13 + ScrollTrigger
+ * Separate animation ownership: reveal > scroll > float > pointer > image.
+ * Existing 8B scroll-driven scenes remain untouched; original mockup images
+ * receive gentle interior motion, never tweens on their legacy animated parent.
+ */
 (() => {
   'use strict';
   const base = '/assets/floating/';
@@ -27,10 +29,11 @@
     ['09_digital_orb', '#visit .visit__map', 'contact-orb', '83%', '32%', 'clamp(80px,11vw,155px)', 10.8, 10]
   ];
   function mount() {
+    if (document.documentElement.classList.contains('eg-motion-ready')) return;
     const figures = [];
-    for (const [name, selector, role, left, top, width, period, angle] of artwork) {
+    artwork.forEach(([name, selector, role, left, top, width, period, angle], index) => {
       const host = document.querySelector(selector);
-      if (!host) continue;
+      if (!host) return;
       let layer = host.querySelector(':scope > .eg-motion-layer');
       if (!layer) {
         layer = document.createElement('div');
@@ -44,85 +47,188 @@
       figure.style.setProperty('--eg-top', top);
       figure.style.setProperty('--eg-width', width);
       figure.style.setProperty('--eg-angle', angle + 'deg');
+      figure.style.setProperty('--eg-index', index);
+      const scroll = document.createElement('span');
+      scroll.className = 'eg-float__scroll';
       const reveal = document.createElement('span');
       reveal.className = 'eg-float__reveal';
       const drift = document.createElement('span');
       drift.className = 'eg-float__drift';
+      const pointer = document.createElement('span');
+      pointer.className = 'eg-float__parallax';
       const image = document.createElement('img');
       image.className = 'eg-float__image';
       image.src = base + name + '.webp';
       image.alt = '';
       image.decoding = 'async';
-      image.loading = selector.includes('opening__stage') ? 'eager' : 'lazy';
+      image.loading = role.startsWith('hero-') ? 'eager' : 'lazy';
       image.setAttribute('draggable', 'false');
       if (role === 'hero-orb') image.setAttribute('fetchpriority', 'high');
-      image.addEventListener('error', () => { figure.hidden = true; }, {once:true});
-      drift.append(image);
+      image.addEventListener('error', () => { figure.hidden = true; }, { once: true });
+      pointer.append(image);
+      drift.append(pointer);
       reveal.append(drift);
-      figure.append(reveal);
+      scroll.append(reveal);
+      figure.append(scroll);
       layer.append(figure);
-      figures.push({name,role,figure,reveal,drift,image,host,period,angle});
-    }
+      figures.push({ name, role, host, figure, scroll, reveal, drift, pointer, image, period, angle, index, active:false, played:false, tweens:[] });
+    });
     if (!figures.length) return;
     document.documentElement.classList.add('eg-motion-ready');
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const coarse = window.matchMedia('(pointer: coarse)');
     if (reduced.matches || !window.gsap) return;
     const gsap = window.gsap;
     const ScrollTrigger = window.ScrollTrigger;
     if (ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
-    const running = new Map();
-    function ensureFloat(item) {
-      if (running.has(item)) { running.get(item).resume(); return; }
-      const duration = item.period;
-      const tween = gsap.to(item.image,{
-        y: '+=15', x: item.angle < 0 ? -7 : 7,
-        rotation: item.angle * .35, duration,
-        ease:'sine.inOut', yoyo:true, repeat:-1, paused:false, force3D:true
-      });
-      running.set(item,tween);
+    document.documentElement.classList.add('eg-gsap-live', 'eg-kinetic-v2');
+    const narrow = matchMedia('(max-width: 700px)');
+    const intensity = narrow.matches ? .62 : 1;
+
+    function setActive(item, state) {
+      item.active = state;
+      const run = state && !document.hidden && !reduced.matches;
+      item.figure.classList.toggle('eg-is-moving', run);
+      for (const tween of item.tweens) run ? tween.resume() : tween.pause();
+      if (run && !item.played) {
+        item.played = true;
+        item.appear.play(0);
+      }
     }
     for (const item of figures) {
-      const trigger = item.role.startsWith('hero-') ? document.querySelector('#opening .opening__first') : item.host;
-      gsap.set(item.reveal, {autoAlpha:0, y:item.role.startsWith('hero-')?35:45, scale:.86});
-      const appear = gsap.to(item.reveal,{
-        autoAlpha:1,y:0,scale:1,rotation:item.angle*.12,
-        duration:item.role==='hero-orb'?1.65:1.0,
-        delay:item.role.startsWith('hero-')?Math.min(1.1,figures.indexOf(item)*.12):0,
-        ease:'power3.out', paused:true, force3D:true
+      const hero = item.role.startsWith('hero-');
+      const direction = item.index % 2 ? -1 : 1;
+      const speed = Math.max(3.2, Math.min(5.9, item.period * .54));
+      const sway = (hero ? 41 : 27) * intensity * (item.role === 'hero-orb' ? .82 : 1);
+      const swing = (hero ? 19 : 13) * intensity;
+      const tilt = (hero ? 12 : 8) * intensity;
+      gsap.set(item.drift, { y: -sway * .46 * direction, x: -swing * .7 * direction });
+      const float = gsap.to(item.drift, {
+        y: sway * direction, x: swing * direction,
+        rotation: direction * tilt,
+        duration: speed, ease: 'sine.inOut',
+        yoyo: true, repeat: -1, paused: true, force3D: true
+      });
+      const pulse = gsap.to(item.image, {
+        scale: hero ? 1.075 : 1.055,
+        rotation: direction * (hero ? 5 : 3),
+        duration: speed * 1.28, ease: 'sine.inOut',
+        yoyo: true, repeat: -1, paused: true, force3D: true
+      });
+      item.tweens.push(float, pulse);
+      item.appear = gsap.fromTo(item.reveal,
+        { autoAlpha: 0, y: hero ? 70 : 48, scale: hero ? .72 : .83, rotation: item.angle * -.32 },
+        { autoAlpha: 1, y: 0, scale: 1, rotation: 0,
+          duration: hero ? 1.2 : .95, ease: 'power3.out',
+          delay: hero ? Math.min(.55, item.index * .10) : 0,
+          paused: true, force3D: true
+        });
+      const trigger = hero ? document.getElementById('opening') : item.host;
+      if (ScrollTrigger) {
+        ScrollTrigger.create({
+          trigger, start: 'top bottom', end: 'bottom top',
+          onToggle: self => setActive(item, self.isActive)
+        });
+        gsap.fromTo(item.scroll,
+          { y: (hero ? 45 : 30) * intensity, rotation: -direction * 4 },
+          { y: (hero ? -115 : -62) * intensity, rotation: direction * (hero ? 9 : 5),
+            ease: 'none', force3D: true,
+            scrollTrigger: { trigger, start: 'top bottom', end: 'bottom top', scrub: .65 }
+          });
+      } else if ('IntersectionObserver' in window) {
+        new IntersectionObserver(entries => {
+          for (const entry of entries) setActive(item, entry.isIntersecting);
+        }, { rootMargin: '65px' }).observe(trigger);
+      } else setActive(item, true);
+    }
+
+    // Animate the illustration INSIDE legacy frames, not their transform-animated
+    // 8B wrapper. This preserves original CSS scroll timelines and their masks.
+    const legacyImages = [
+      ...document.querySelectorAll(
+        '#depths .depths__sheet img, #rooms .rooms__print .m-print__sheet img, ' +
+        '#members .members__figure img, #evenings .evenings__print img'
+      )
+    ];
+    const legacy = legacyImages.map((image, index) => {
+      const dir = index % 2 ? -1 : 1;
+      const tween = gsap.to(image, {
+        scale: 1.075, x: dir * 10 * intensity, y: -9 * intensity,
+        duration: 4.1 + index % 3, ease:'sine.inOut',
+        repeat:-1, yoyo:true, paused:true, force3D:true
+      });
+      return { image, tween, active:false };
+    });
+    if (legacy.length) {
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(entries => {
+          for (const entry of entries) {
+            const item = legacy.find(record => record.image === entry.target);
+            if (!item) continue;
+            item.active = entry.isIntersecting;
+            if (item.active && !document.hidden) item.tween.resume();
+            else item.tween.pause();
+          }
+        }, { rootMargin:'120px' });
+        legacy.forEach(item => observer.observe(item.image));
+      } else {
+        legacy.forEach(item => { item.active=true; item.tween.resume(); });
+      }
+    }
+
+    // A single subtle rotation on the decorative plan SVG (its path children
+    // retain the original 8B scroll-driven animation).
+    const planWells = [...document.querySelectorAll('#plans .plan__well')];
+    planWells.forEach((well,index) => {
+      const tween = gsap.to(well, {
+        rotation:(index%2 ? -1 : 1)*5, transformOrigin:'50% 50%',
+        duration:6+index, yoyo:true, repeat:-1,
+        ease:'sine.inOut', paused:true, force3D:true
       });
       if (ScrollTrigger) {
         ScrollTrigger.create({
-          trigger, start:'top 95%', end:'bottom 5%',
-          onEnter:()=>{appear.play();ensureFloat(item);},
-          onEnterBack:()=>{appear.play();ensureFloat(item);},
-          onLeave:()=>{running.get(item)?.pause();},
-          onLeaveBack:()=>{running.get(item)?.pause();}
+          trigger:well.closest('.plans__item'),
+          start:'top bottom', end:'bottom top',
+          onToggle:self => self.isActive && !document.hidden ? tween.resume() : tween.pause()
         });
-      } else { appear.play(); ensureFloat(item); }
-    }
-    if (!coarse.matches) {
+      } else tween.resume();
+      legacy.push({ image:well, tween, active:true });
+    });
+
+    // The pointer controls only the parallax wrapper; continuous movement and
+    // scroll remain on different nodes, so no competing transform tweens.
+    if (matchMedia('(hover:hover) and (pointer:fine) and (min-width:901px)').matches) {
       const hero = document.querySelector('#opening .opening__stage');
       if (hero) {
-        const actors = figures.filter(x=>x.role.startsWith('hero-'));
-        const move = actors.map((item,index)=>({
-          x:gsap.quickTo(item.drift,'x',{duration:1.25,ease:'power3.out'}),
-          y:gsap.quickTo(item.drift,'y',{duration:1.25,ease:'power3.out'}),
-          strength:index===0?24:12
+        const setters = figures.filter(item => item.role.startsWith('hero-')).map((item,index) => ({
+          x: gsap.quickTo(item.pointer,'x',{ duration:.65, ease:'power3.out' }),
+          y: gsap.quickTo(item.pointer,'y',{ duration:.65, ease:'power3.out' }),
+          strength: index === 0 ? 35 : 18 + index * 2
         }));
-        hero.addEventListener('pointermove', event=>{
-          if (!event.isPrimary) return;
-          const box=hero.getBoundingClientRect();
-          const px=(event.clientX-box.left)/box.width-.5;
-          const py=(event.clientY-box.top)/box.height-.5;
-          move.forEach(m=>{m.x(px*m.strength);m.y(py*m.strength);});
-        },{passive:true});
+        hero.addEventListener('pointermove', event => {
+          if (document.hidden || !event.isPrimary) return;
+          const rect = hero.getBoundingClientRect();
+          if (!rect.width || !rect.height) return;
+          const x = Math.max(-1,Math.min(1,((event.clientX-rect.left)/rect.width-.5)*2));
+          const y = Math.max(-1,Math.min(1,((event.clientY-rect.top)/rect.height-.5)*2));
+          setters.forEach(item => { item.x(x*item.strength); item.y(y*item.strength*.74); });
+        }, { passive:true });
+        hero.addEventListener('pointerleave', () => setters.forEach(item => { item.x(0); item.y(0); }), { passive:true });
       }
     }
-    document.addEventListener('visibilitychange',()=>{
-      for(const t of running.values()) document.hidden?t.pause():t.resume();
+
+    document.addEventListener('visibilitychange', () => {
+      figures.forEach(item => {
+        const run = item.active && !document.hidden && !reduced.matches;
+        item.figure.classList.toggle('eg-is-moving',run);
+        item.tweens.forEach(tween => run ? tween.resume() : tween.pause());
+      });
+      legacy.forEach(item => {
+        const run = item.active && !document.hidden && !reduced.matches;
+        run ? item.tween.resume() : item.tween.pause();
+      });
     });
-    if (ScrollTrigger) requestAnimationFrame(()=>ScrollTrigger.refresh());
+    if (ScrollTrigger) requestAnimationFrame(() => ScrollTrigger.refresh());
   }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', mount,{once:true}); else mount();
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mount, {once:true});
+  else mount();
 })();
