@@ -225,6 +225,87 @@
       }
     }
 
+
+    // Browser compatibility bridge: the 8B motion kit intentionally skips
+    // scroll-scenes when CSS animation-timeline:view() is unsupported (e.g.
+    // older Firefox). Recreate the essential composition using GSAP ONLY in
+    // that case. Native 8B CSS + JS remain sole owners on supporting browsers.
+    function legacyScrollBridge() {
+      if (document.documentElement.hasAttribute('data-8b-live') || !ScrollTrigger) return;
+      document.documentElement.classList.add('eg-legacy-bridge');
+      const enter = (node, from, duration=1.0) => {
+        if (!node) return;
+        gsap.fromTo(node,
+          { autoAlpha:0, y:from.y || 0, rotation:from.rotation || 0,
+            scale:from.scale || 1 },
+          { autoAlpha:1, y:0, rotation:0, scale:1, duration, ease:'power3.out',
+            clearProps:'transform,opacity,visibility',
+            scrollTrigger:{trigger:node,start:'top 94%',toggleActions:'play none none none'}
+          });
+      };
+      document.querySelectorAll('[data-8b-motion~="rise"]').forEach(node => {
+        if (node.closest('#opening')) return;
+        enter(node,{y:52},1.12);
+      });
+      document.querySelectorAll('[data-8b-motion~="hang"]').forEach(node => {
+        enter(node,{y:54,rotation:-7,scale:.96},1.26);
+      });
+      document.querySelectorAll('[data-8b-motion~="ripple"]').forEach(node => {
+        enter(node,{y:22,scale:.9},1.25);
+      });
+      const opening = document.getElementById('opening');
+      const openingWell = opening && opening.querySelector('.opening__well');
+      if (openingWell) gsap.fromTo(openingWell,
+        { y:-24,rotation:-5,scale:.96 },
+        { y:66,rotation:5,scale:1.08,ease:'none',
+          scrollTrigger:{trigger:opening,start:'top top',end:'bottom top',scrub:.7}
+        });
+      const openingCopy = opening && opening.querySelector('.opening__copy');
+      if (openingCopy) gsap.fromTo(openingCopy,
+        {y:0,opacity:1}, {y:-100,opacity:0,ease:'none',
+          scrollTrigger:{trigger:opening,start:'top top',end:'top -92%',scrub:.55}
+        });
+      document.querySelectorAll('#opening .opening__second [data-line]').forEach((node,index) => {
+        gsap.fromTo(node,{autoAlpha:0,y:72},{autoAlpha:1,y:0,duration:1.3,
+          delay:index*.09,ease:'power3.out',
+          scrollTrigger:{trigger:node,start:'top 98%',toggleActions:'play none none none'}
+        });
+      });
+      document.querySelectorAll('#depths .depths__hang').forEach((node,index)=>{
+        gsap.fromTo(node,{y:-45,rotation:(index%2?-1:1)*-4},
+          {y:0,rotation:0,ease:'none',
+            scrollTrigger:{trigger:node,start:'top 105%',end:'top 44%',scrub:.55}
+          });
+      });
+      const dayWell = document.querySelector('#day .day__well');
+      const dayList = document.querySelector('#day .day__list');
+      if (dayWell && dayList) {
+        gsap.fromTo(dayWell,{x:-38,y:20,rotation:-8},{x:40,y:-28,rotation:9,ease:'none',
+          scrollTrigger:{trigger:dayList,start:'top 85%',end:'bottom 15%',scrub:.65}
+        });
+        const rows=[...document.querySelectorAll('#day .day__row')];
+        document.getElementById('day')?.setAttribute('data-dialing','');
+        ScrollTrigger.create({trigger:dayList,start:'top 68%',end:'bottom 56%',
+          onUpdate:self=>{
+            const selected=Math.min(rows.length-1,Math.floor(self.progress*rows.length));
+            rows.forEach((row,index)=>row.toggleAttribute('data-now',index===selected));
+          }
+        });
+      }
+      document.querySelectorAll('#rules .rules__row').forEach(row=>{
+        const halves=[...row.querySelectorAll('.rules__half')];
+        halves.forEach((half,index)=>gsap.fromTo(half,
+          {x:index===0?-45:45,autoAlpha:.62},
+          {x:0,autoAlpha:1,ease:'power2.out',
+            scrollTrigger:{trigger:row,start:'top 88%',end:'top 42%',scrub:.65}
+          }));
+      });
+      document.querySelectorAll('#rooms .rooms__body').forEach(node=>enter(node,{y:33},.95));
+      document.querySelectorAll('#evenings .evenings__row').forEach(node=>enter(node,{y:33},1.0));
+      document.querySelectorAll('#plans .plans__body').forEach(node=>enter(node,{y:42},1.1));
+    }
+    legacyScrollBridge();
+
     document.addEventListener('visibilitychange', () => {
       figures.forEach(item => {
         const run = item.active && !document.hidden && !reduced.matches;
