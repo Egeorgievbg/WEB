@@ -129,3 +129,22 @@ html.eg-motion-ready #opening .opening__figure{display:none!important;}
     animation:none!important;transition:none!important;will-change:auto!important;
   }
 }
+
+/* 8B compatibility bridge: on older Firefox, native view-timeline is absent.
+   GSAP animates the section composition and toggles the active process row. */
+html.eg-legacy-bridge #day[data-dialing] .day__row{
+  transition:opacity .35s ease;
+}
+html.eg-legacy-bridge #day[data-dialing] .day__row:not([data-now]){
+  opacity:.48;
+}
+html.eg-legacy-bridge #day[data-dialing] .day__row[data-now]{
+  opacity:1;
+}
+html.eg-legacy-bridge #rooms .rooms__body,
+html.eg-legacy-bridge #plans .plans__body{
+  backface-visibility:hidden;
+}
+@media(prefers-reduced-motion:reduce){
+  html.eg-legacy-bridge #day .day__row{transition:none!important;}
+}
